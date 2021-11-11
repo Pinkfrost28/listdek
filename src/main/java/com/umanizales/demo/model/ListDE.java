@@ -639,7 +639,7 @@ public class ListDE {
       GenderByGradeDTO genderByGradeDTO = new GenderByGradeDTO(grade,countByGender,count);
       return genderByGradeDTO;
   }
-//F
+
   public GradeByLocationDTO getGradesByLocation(Location location) throws ListaDeException
   {
       List<GenderByGradeDTO> genderByGradeDTOS = new ArrayList<>();
