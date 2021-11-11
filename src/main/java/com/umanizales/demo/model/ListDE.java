@@ -605,40 +605,110 @@ public class ListDE {
         return count;
     }
 
-
+    /**
+     *
+     * @param grade
+     * @param location
+     * @return GenderByGradeDTO
+     * @throws ListaDeException
+     */
 
   public GenderByGradeDTO gendersByGradeByLocation (int grade, Location location) throws ListaDeException
   {
+      /**
+       * Se invoca el metodo que valida si la lista está vacia
+       */
         validateListEmpty();
-        Node temp = this.head;
-        int count = 0;
+      /**
+       * Llamo a un ayudante y lo ubico en la cabeza o inicio
+       */
+      Node temp = this.head;
+
+      /**
+       * Creo un contador que me dirá la cantidad de niños que hay en un grado
+       */
+      int count = 0;
+      /**
+       * Creo un contador que me dirá la cantidad de niñas huerfanas que hay en un grado
+       */
         int countF = 0;
+      /**
+       * Creo un contador que me dirá la cantidad de niños huerfanos que hay en un grado
+       */
         int countM = 0;
-        while (temp!= null)
+
+      /**
+       * Creo un cliclo para reccorrer la lista de principio a fin
+       */
+      while (temp!= null)
         {
+            /**
+             * Pregunto si el niño en el que se encuentra ubicado temporal tiene la localidad y el grado que se están dando
+             * como parametro
+             */
             if(temp.getData().getLocation().equals(location) && temp.getData().getGrade() == grade)
             {
+                /**
+                 * Al encontrarlo el contador total aumeta 1
+                 */
                 count++;
+
+                /**
+                 * Pregunto si el niño es huerfano
+                 */
                 if (temp.getData().isOrphan())
                 {
+                    /**
+                     * Pregunto si es masculino
+                     */
                     if (temp.getData().getGender().equals(Gender.MASCULINO))
                     {
+                        /**
+                         * Si es masculino el contador de niños huerfanos aumenta 1
+                         */
                         countM++;
                     }
                     else
                     {
+                        /**
+                         * Si es femenino el contador de niñas huerfanas aumenta 1
+                         */
                         countF++;
                     }
                 }
             }
             temp = temp.getNext();
         }
+      /**
+       * Creo una lista de CountByGender , esta pide un genero y un contador
+       * p. ej (Masculino , 3)
+       */
       List<CountByGenderDTO> countByGender = new ArrayList<>();
+      /**
+       * Agrego a la lista que acabé de crear al genero masculino junto el contador de niños huerfanos
+       */
       countByGender.add(new CountByGenderDTO(Gender.MASCULINO,countM));
+      /**
+       * Agrego a la lista que acabé de crear al genero femenino junto el contador de niñas huerfanas
+       */
       countByGender.add(new CountByGenderDTO(Gender.FEMENINO,countF));
+      /**
+       * creo una variable de tipo GenderByGradeDTO, este me pide un grado, una lista de countByGender y un contador total
+       * a este le mando el grado que me enviaron en el parametro, la lista que cree anteriormente y el contador total niños
+       */
       GenderByGradeDTO genderByGradeDTO = new GenderByGradeDTO(grade,countByGender,count);
+      /**
+       * retorna la variable de tipo GenderByGradeDTO que se acabó de crear
+       */
       return genderByGradeDTO;
   }
+
+    /**
+     *
+     * @param location
+     * @return2
+     * @throws ListaDeException
+     */
 
   public GradeByLocationDTO getGradesByLocation(Location location) throws ListaDeException
   {
