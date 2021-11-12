@@ -709,7 +709,7 @@ public class ListDE {
      * @return2
      * @throws ListaDeException
      */
-
+//f
   public GradeByLocationDTO getGradesByLocation(Location location) throws ListaDeException
   {
       /**
