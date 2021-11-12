@@ -712,12 +712,30 @@ public class ListDE {
 
   public GradeByLocationDTO getGradesByLocation(Location location) throws ListaDeException
   {
+      /**
+       * Creo una lista de tipo GenderbyGrade, este me pide un grado, una lista de countByGender y un contador total
+       */
       List<GenderByGradeDTO> genderByGradeDTOS = new ArrayList<>();
+      /**
+       * Recorro todos los grados desde el 1 hasta el 5
+       */
       for (byte i=1; i<=5;i++)
       {
+          /**
+           * llamo al metodo gendersByGradeByLocation le doy como parametro el grado en el que esté mi recorrido y la localidad que me mandaron
+           * agrego a lista que cree lo que el metodo me retorne
+           */
           genderByGradeDTOS.add(gendersByGradeByLocation(i,location));
       }
+
+      /**
+       * Creo una variable de tipo GradeByLocation que  me pide una localidad y una lista de tipo GenderByGradeDTO
+       * esta variable tendrá la localidad que me mandaron en el parametro y la lista que cree de tipo GenderByGrade
+       */
       GradeByLocationDTO gradeByLocationDTO = new GradeByLocationDTO(location, genderByGradeDTOS);
+      /**
+       * retorno la variable que acabé de crear
+       */
       return gradeByLocationDTO;
   }
 }

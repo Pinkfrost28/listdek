@@ -206,14 +206,30 @@ public class  ListDeService {
 
     }*/
 
+    /**
+     *
+     * @throws ListaDeException
+     */
     public ResponseEntity<ResponseDTO>  getOrphansByGradeByLocation() throws ListaDeException
     {
+        /**
+         * Creo una lista de tipo GradeByLocation que me pide una localidad y una lista GenderByGrade
+         */
         List<GradeByLocationDTO> gradeByLocationDTOS = new ArrayList<>();
+        /**
+         * Recorro las localidades inicializadas
+         */
         for (Location loc: locations)
         {
+            /**
+             * invoco al metodo getGradesByLocation que me retorna una variable de tipo  GradeByLocationDTO y lo que me
+             * retorne lo agrego a la lista gradebyLocationDTOS que cree anteriormente
+             */
             gradeByLocationDTOS.add(listBoys.getGradesByLocation(loc));
         }
-
+        /**
+         * Retorno la respuesta junto a la lista gradeByLocationDTOS
+         */
         return new ResponseEntity<>(new ResponseDTO("Satisfactorio", gradeByLocationDTOS, null), HttpStatus.OK);
     }
 }
